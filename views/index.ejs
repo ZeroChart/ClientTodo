@@ -12,7 +12,7 @@
   <ul class="article-ul">
     <% data.forEach(element => { %>
       <li>
-        <a href="/clientaspage/<%= element._id %>">
+        <a href="/clienttodopage/<%= element._id %>">
           <span><%= element.title %> </span>
           <span class="article-list-date"><%= element.createdAt.toDateString() %></span>
         </a>
