@@ -1,0 +1,42 @@
+//임시 데이터 저장하기
+// ClientASList.insertMany([
+//   {
+//     dateid: "2024.04.10",
+//     client: "공안과",
+//     makename: "김은정",
+//     title: "제목 1",
+//     body: "내용 1 - Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
+//     // result: "",
+//     // deptname: "",
+//     // enddate: "",
+//   },
+//   {
+//     dateid: "2024.04.11",
+//     client: "정근안과",
+//     makename: "김민하",
+//     title: "제목 2",
+//     body: "내용 2 - Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
+//   },
+//   {
+//     dateid: "2024.04.12",
+//     client: "우창하안과",
+//     makename: "박진경",
+//     title: "제목 3",
+//     body: "내용 3 - Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
+//   },
+//   {
+//     dateid: "2024.04.12",
+//     client: "신안과",
+//     makename: "신대리라",
+//     title: "제목 4",
+//     body: "내용 4 - Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
+//   },
+//   {
+//     dateid: "2024.04.13",
+//     client: "성모안과",
+//     makename: "장실장",
+//     title: "제목 5",
+//     body: "내용 5 - Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
+//   },
+// ]);
+
