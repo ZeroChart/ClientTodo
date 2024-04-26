@@ -10,11 +10,29 @@ const jwt = require('jsonwebtoken');
 const jwtSecret = process.env.JWT_SECRET;
 
 /**
+ * Check login
+ */
+const checkLogin = (req, res, next) => {
+  const token = req.cookies.token;
+  if (!token) {
+    res.redirect("/admin");
+  }
+  try {
+    const decoded = jwt.verify(token, jwtSecret);
+    req.userId = decoded.userId;
+    next();
+  } catch (error) {
+    res.redirect("/admin");
+  }
+}
+
+/**
  * GET /allClientTodos
  * Get all clienttodos
  */
 router.get(
   "/allClientTodos", 
+  checkLogin,
   asyncHandler(async (req, res) => {
     const locals = {
       title: "거래처 할일들",
@@ -89,5 +107,14 @@ router.post(
 //     res.json(`user create: ${user}`);
 //   })
 // );
+
+/**
+ * GET /logout
+ * Admin logout
+ */
+router.get("/logout", (req, res) => {
+  res.clearCookie("token");
+  res.redirect("/");
+});
 
 module.exports = router;
