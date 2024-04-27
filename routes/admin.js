@@ -37,12 +37,50 @@ router.get(
     const locals = {
       title: "거래처 할일들",
     };
-    const data = await ClientToodo.find();
+    const data = await ClientToodo.find().sort({ updatedAt: 'desc', createdAt: 'desc'});
     res.render("admin/allClientTodos", {
       locals,
       data,
       layout: adminLayout,
     });
+  })
+);
+
+/**
+ * GET /add
+ * Admin add clienttodo
+ */
+router.get(
+  "/add", 
+  asyncHandler(async (req, res) => {
+    const locals = {
+      title: "게시물 작성",
+    }
+    res.render("admin/add", 
+    { locals, 
+      layout: adminLayout
+    });
+  })
+);
+
+/**
+ * POST /add
+ * Admin add clienttodo
+ */
+router.post(
+  "/add", 
+  checkLogin,
+  asyncHandler(async (req, res) => {
+    const { title, body } = req.body;
+    const newClientTodo = new ClientToodo({
+      title: title,
+      body: body,
+      client: '원바이트',
+      makename: '담당자',
+      dateid: Date.now().toString(),
+    });
+    await ClientToodo.create(newClientTodo);
+    res.redirect('/allClientTodos');
   })
 );
 
