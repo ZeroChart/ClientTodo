@@ -47,19 +47,53 @@ router.get(
 );
 
 /**
- * GET /add
- * Admin add clienttodo
+ * GET /edit/:id
+ * Admin edit clienttodo
  */
 router.get(
-  "/add", 
+  "/edit/:id", 
+  checkLogin,
   asyncHandler(async (req, res) => {
     const locals = {
-      title: "게시물 작성",
-    }
-    res.render("admin/add", 
+      title: "게시물 편집",
+    };
+    const data = await ClientToodo.findOne({ _id: req.params.id });
+
+    res.render("admin/edit", 
     { locals, 
+      data,
       layout: adminLayout
     });
+  })
+);
+
+/**
+ * PUT /edit/:id
+ * Admin post clienttodo
+ */
+router.put(
+  "/edit/:id", 
+  checkLogin,
+  asyncHandler(async (req, res) => {
+    await ClientToodo.findByIdAndUpdate(req.params.id, {
+      title:  req.body.title,
+      body: req.body.body,
+      createdAt: Date.now(),
+    });
+    res.redirect('/allClientTodos');
+  })
+);
+
+/**
+ * PUT /delete/:id
+ * Admin delete clienttodo
+ */
+router.delete(
+  "/delete/:id", 
+  checkLogin,
+  asyncHandler(async (req, res) => {
+    await ClientToodo.deleteOne({ _id: req.params.id });
+    res.redirect('/allClientTodos');
   })
 );
 
